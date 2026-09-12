@@ -1,5 +1,7 @@
 // assets/product-custom-property.js
 import { Component } from '@theme/component';
+import { ThemeEvents } from '@theme/events';
+import { morph } from '@theme/morph';
 
 /**
  * @typedef {object} ProductCustomPropertyRefs
@@ -8,10 +10,28 @@ import { Component } from '@theme/component';
  */
 
 /**
- * A custom element that manages product custom properties
+ * A custom element that manages product custom properties.
+ * When the block is set to only show for variants with personalisation, this component
+ * listens for variant update events and re-renders itself using the freshly fetched
+ * section HTML, since a variant change on the product page only morphs the variant
+ * picker itself - not the rest of the section.
  * @extends Component<ProductCustomPropertyRefs>
  */
 class ProductCustomProperty extends Component {
+  connectedCallback() {
+    super.connectedCallback();
+    this.#section?.addEventListener(ThemeEvents.variantUpdate, this.#handleVariantUpdate);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.#section?.removeEventListener(ThemeEvents.variantUpdate, this.#handleVariantUpdate);
+  }
+
+  get #section() {
+    return this.closest('.shopify-section, dialog');
+  }
+
   handleInput() {
     this.#updateCharacterCount();
   }
@@ -28,6 +48,27 @@ class ProductCustomProperty extends Component {
 
     characterCount.textContent = updatedText;
   }
+
+  /**
+   * Re-renders the block for the newly selected variant.
+   * @param {import('@theme/events').VariantUpdateEvent} event - The variant update event.
+   */
+  #handleVariantUpdate = (event) => {
+    if (event.detail.data.newProduct) {
+      this.dataset.productId = event.detail.data.newProduct.id;
+    } else if (event.target instanceof HTMLElement && event.target.dataset.productId !== this.dataset.productId) {
+      return;
+    }
+
+    const newBlock = event.detail.data.html.querySelector(
+      `product-custom-property-component[data-block-id="${this.dataset.blockId}"]`
+    );
+
+    if (!(newBlock instanceof HTMLElement)) return;
+
+    this.hidden = newBlock.hidden;
+    morph(this, newBlock, { childrenOnly: true });
+  };
 }
 
 customElements.define('product-custom-property-component', ProductCustomProperty);

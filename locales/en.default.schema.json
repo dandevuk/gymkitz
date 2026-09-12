@@ -1038,7 +1038,12 @@
       "heading_preset": "Heading",
       "description_preset": "Description",
       "input_preset": "Input",
-      "checkbox_preset": "Checkbox label"
+      "checkbox_preset": "Checkbox label",
+      "visibility": "Visibility",
+      "show_if_personalisation": "Only show if selected variant has personalisation",
+      "show_if_personalisation_info": "Hides this block unless the selected variant's custom.personalisation metafield is true.",
+      "require_if_personalisation": "Require input when shown for personalisation",
+      "require_if_personalisation_info": "Buyers must fill in this field to add the item to cart whenever it's shown because the variant has personalisation."
     },
     // Checkbox setting to enable quick add to cart from product cards
     "quick_add": "Quick add",

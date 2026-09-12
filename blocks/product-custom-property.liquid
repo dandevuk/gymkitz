@@ -18,6 +18,24 @@
   else
     assign actual_input_type = block_settings.input_type
   endif
+
+  # Optionally limit the block to the selected variant being flagged for personalisation.
+  # Uses product.selected_variant (not selected_or_first_available_variant) so the block
+  # only shows once a variant is explicitly/fully selected - never defaults to "any" variant.
+  assign show_block = true
+  if block_settings.show_if_personalisation
+    assign personalisation = closest.product.selected_variant.metafields.custom.personalisation.value
+    unless personalisation == true or personalisation == 'true'
+      assign show_block = false
+    endunless
+  endif
+
+  # The input is required whenever the merchant has turned on the general "required" setting,
+  # or when it's being shown because the variant has personalisation and that's set to require input.
+  assign is_required = block_settings.required
+  if block_settings.show_if_personalisation and block_settings.require_if_personalisation
+    assign is_required = true
+  endif
 -%}
 
 {% capture character_count_label %}
@@ -39,84 +57,94 @@
   </label>
 {% endcapture %}
 
-<div
+<product-custom-property-component
   class="spacing-style"
   style="{% render 'spacing-style', settings: block_settings %}"
+  data-block-id="{{ block.id }}"
+  data-product-id="{{ product_id }}"
+  {% unless show_block %}hidden{% endunless %}
   {{ block.shopify_attributes }}
 >
-  {% if block_settings.property_heading != blank %}
-    <p
-      class="__heading"
-    >
-      {{ block_settings.property_heading | escape }}
-    </p>
-  {% endif %}
-
-  {% if block_settings.property_description != blank %}
-    <p
-      class="__description"
-    >
-      {{ block_settings.property_description | escape }}
-    </p>
-  {% endif %}
-
-  <div class="__field">
-    {% if actual_input_type == 'textarea' %}
-      <div class="__input-wrapper">
-        <textarea
-          ref="textInput"
-          on:input="/handleInput"
-          id="{{ element_id }}"
-          name="{{ property_name }}"
-          class="field__input custom-property__input"
-          placeholder="{{ block_settings.placeholder_textarea | escape }}"
-          form="{{ product_form_id }}"
-          maxlength="{{ block_settings.max_length }}"
-          {% if block_settings.required %}
-            required aria-required="true"
-          {% endif %}
-          rows="3"
-        ></textarea>
-        {{ character_count_label }}
-      </div>
-    {% elsif actual_input_type == 'checkbox' %}
-      {% render 'checkbox',
-        name: property_name,
-        value: block_settings.checkbox_label,
-        label: block_settings.checkbox_label,
-        id: element_id,
-        checked: false,
-        events: '',
-        disabled: false,
-        required: block_settings.required,
-        formId: product_form_id
-      %}
-    {% else %}
-      <div class="__input-wrapper">
-        <input
-          ref="textInput"
-          on:input="/handleInput"
-          type="text"
-          id="{{ element_id }}"
-          name="{{ property_name }}"
-          class="field__input"
-          placeholder="{{ block_settings.placeholder | escape }}"
-          form="{{ product_form_id }}"
-          maxlength="{{ block_settings.max_length }}"
-          {% if block_settings.required %}
-            required aria-required="true"
-          {% endif %}
-        >
-        {{ character_count_label }}
-      </div>
+  {%- if show_block -%}
+    {% if block_settings.property_heading != blank %}
+      <p
+        class="__heading"
+      >
+        {{ block_settings.property_heading | escape }}
+      </p>
     {% endif %}
-  </div>
-</div>
+
+    {% if block_settings.property_description != blank %}
+      <p
+        class="__description"
+      >
+        {{ block_settings.property_description | escape }}
+      </p>
+    {% endif %}
+
+    <div class="__field">
+      {% if actual_input_type == 'textarea' %}
+        <div class="__input-wrapper">
+          <textarea
+            ref="textInput"
+            on:input="/handleInput"
+            id="{{ element_id }}"
+            name="{{ property_name }}"
+            class="field__input custom-property__input"
+            placeholder="{{ block_settings.placeholder_textarea | escape }}"
+            form="{{ product_form_id }}"
+            maxlength="{{ block_settings.max_length }}"
+            {% if is_required %}
+              required aria-required="true"
+            {% endif %}
+            rows="3"
+          ></textarea>
+          {{ character_count_label }}
+        </div>
+      {% elsif actual_input_type == 'checkbox' %}
+        {% render 'checkbox',
+          name: property_name,
+          value: block_settings.checkbox_label,
+          label: block_settings.checkbox_label,
+          id: element_id,
+          checked: false,
+          events: '',
+          disabled: false,
+          required: is_required,
+          formId: product_form_id
+        %}
+      {% else %}
+        <div class="__input-wrapper">
+          <input
+            ref="textInput"
+            on:input="/handleInput"
+            type="text"
+            id="{{ element_id }}"
+            name="{{ property_name }}"
+            class="field__input"
+            placeholder="{{ block_settings.placeholder | escape }}"
+            form="{{ product_form_id }}"
+            maxlength="{{ block_settings.max_length }}"
+            {% if is_required %}
+              required aria-required="true"
+            {% endif %}
+          >
+          {{ character_count_label }}
+        </div>
+      {% endif %}
+    </div>
+  {%- endif -%}
+</product-custom-property-component>
 
 {% stylesheet %}
   product-custom-property-component {
     display: block;
     width: 100%;
+  }
+
+  /* The base display: block rule above would otherwise win over the browser default [hidden] rule */
+  product-custom-property-component[hidden] {
+    display: none;
   }
 
   product-custom-property-component .__heading {
@@ -214,7 +242,7 @@
 {% schema %}
 {
   "name": "t:names.product_custom_property",
-  "tag": "product-custom-property-component",
+  "tag": null,
   "settings": [
     {
       "type": "text",
@@ -233,6 +261,25 @@
       "label": "t:settings.product_custom_property.key",
       "default": "t:settings.product_custom_property.default_property_key",
       "info": "t:settings.product_custom_property.key_info"
+    },
+    {
+      "type": "header",
+      "content": "t:settings.product_custom_property.visibility"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_if_personalisation",
+      "label": "t:settings.product_custom_property.show_if_personalisation",
+      "info": "t:settings.product_custom_property.show_if_personalisation_info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "require_if_personalisation",
+      "label": "t:settings.product_custom_property.require_if_personalisation",
+      "info": "t:settings.product_custom_property.require_if_personalisation_info",
+      "default": true,
+      "visible_if": "{{ block.settings.show_if_personalisation }}"
     },
     {
       "type": "header",

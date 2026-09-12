@@ -187,6 +187,27 @@
               },
               "blocks": {}
             },
+            "product_custom_property_jMjYkE": {
+              "type": "product-custom-property",
+              "name": "t:names.product_custom_property",
+              "settings": {
+                "property_heading": "Customise your product",
+                "property_description": "",
+                "property_key": "Name",
+                "show_if_personalisation": true,
+                "input_type": "text",
+                "max_length": 25,
+                "checkbox_label": "Include gift wrapping",
+                "required": false,
+                "placeholder": "Enter your name",
+                "placeholder_textarea": "Add your name",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -253,6 +274,7 @@
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "product_custom_property_jMjYkE",
             "buy_buttons_eYQEYi",
             "text_aEtTtq"
           ]
