@@ -45,8 +45,8 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
+        "image_1": "shopify://shop_images/Gymkitz_header_237b285e-765d-41b0-b5d9-56b62745bb5e.png",
         "media_type_2": "image",
-        "image_2": "shopify://shop_images/Gymkitz_header_237b285e-765d-41b0-b5d9-56b62745bb5e.png",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
