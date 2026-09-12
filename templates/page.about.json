@@ -190,9 +190,9 @@
               "type": "text",
               "settings": {
                 "text": "<p>We are a small, family-run business based in the heart of Mid Norfolk, with extensive experience in the design and creation of gymnastics equipment and associated products.</p><p>Our workshop has recently undergone a major upgrade with the addition of advanced CNC cutting machines, 3D printers, and professional design software.</p><p>This investment supports our ongoing research and development, allowing us to design and refine innovative new products.</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
