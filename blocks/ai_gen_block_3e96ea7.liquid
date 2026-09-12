@@ -1,0 +1,207 @@
+{% doc %}
+  @prompt
+    Please create a section which is a USP section. It needs blocks which reference USP metaobjects which consist of a heading and an icon (image). This needs to be flex responsive with centred content., the usps don't work, just says no compatible fields, the USPs shouldn't be limited to 4 section settings, they should be blocks, please remove the block metaobject setting and replace with text and image settings
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-usp-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1 1 {{ block.settings.item_min_width }}px;
+    max-width: {{ block.settings.item_max_width }}px;
+    padding: {{ block.settings.item_padding }}px;
+  }
+
+  .ai-usp-icon-wrapper-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin-bottom: {{ block.settings.icon_spacing }}px;
+    flex-shrink: 0;
+  }
+
+  .ai-usp-icon-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-usp-icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  .ai-usp-icon-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-usp-heading-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-usp-item-{{ ai_gen_id }} {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+
+    .ai-usp-icon-wrapper-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size | times: 0.8 }}px;
+      height: {{ block.settings.icon_size | times: 0.8 }}px;
+      margin-bottom: {{ block.settings.icon_spacing | times: 0.8 }}px;
+    }
+
+    .ai-usp-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-usp-item-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-usp-icon-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.icon != blank %}
+      <img
+        src="{{ block.settings.icon | image_url: width: 200 }}"
+        alt="{{ block.settings.icon.alt | default: block.settings.heading | escape }}"
+        class="ai-usp-icon-{{ ai_gen_id }}"
+        loading="lazy"
+        width="200"
+        height="200"
+      >
+    {% else %}
+      <div class="ai-usp-icon-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
+  {% if block.settings.heading != blank %}
+    <h3 class="ai-usp-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h3>
+  {% endif %}
+   {% if block.settings.text != blank %}
+    <p style="margin-top:12px;">{{ block.settings.text }}</p>
+   {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "USP item",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Free shipping"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "item_min_width",
+      "label": "Minimum width",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "item_max_width",
+      "label": "Maximum width",
+      "min": 200,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Size",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Space below",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#2b2b2b"
+    }
+  ],
+  "presets": [
+    {
+      "name": "USP item"
+    }
+  ]
+}
+{% endschema %}
