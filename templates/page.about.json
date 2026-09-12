@@ -296,7 +296,7 @@
               "name": "t:names.button",
               "settings": {
                 "label": "Contact Us",
-                "link": "shopify://pages/contact-us",
+                "link": "shopify://pages/contact",
                 "open_in_new_tab": false,
                 "style_class": "button",
                 "width": "fit-content",
