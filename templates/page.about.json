@@ -9,72 +9,6 @@
  */
 {
   "sections": {
-    "hero_nKeYyr": {
-      "type": "hero",
-      "blocks": {
-        "text_Dt3XWC": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_Dt3XWC"
-      ],
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/header.png",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "center",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "auto",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
-      }
-    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -144,6 +78,184 @@
         "padding-block-end": 0
       }
     },
+    "slideshow_kpyFzr": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_VH3VPM": {
+          "type": "_slide",
+          "settings": {
+            "media_type_1": "image",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 3,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 48,
+            "padding-block-end": 0,
+            "padding-inline-start": 48,
+            "padding-inline-end": 48
+          },
+          "blocks": {
+            "text_xXKJPz": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>Our Story</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_xXKJPz"
+          ]
+        },
+        "slide_GVAYPe": {
+          "type": "_slide",
+          "settings": {
+            "media_type_1": "image",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 48,
+            "padding-block-end": 48,
+            "padding-inline-start": 48,
+            "padding-inline-end": 48
+          },
+          "blocks": {
+            "text_ahpWBA": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>Bestsellers</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_y43Mwt": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Discover the bestsellers that have captured the hearts of our customers with their perfect blend of functionality and style.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 20,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_bDfqJD": {
+              "type": "button",
+              "settings": {
+                "label": "Shop now",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_ahpWBA",
+            "text_y43Mwt",
+            "button_bDfqJD"
+          ]
+        }
+      },
+      "block_order": [
+        "slide_VH3VPM",
+        "slide_GVAYPe"
+      ],
+      "name": "t:names.slideshow_inset",
+      "settings": {
+        "display_mode": "with_hints",
+        "section_width": "full-width",
+        "full_frame_on_mobile": false,
+        "slideshow_gap": 18,
+        "corner_radius": 20,
+        "slide_height": "medium",
+        "content_position": "below-media",
+        "color_scheme": "",
+        "icons_style": "arrows_large",
+        "icons_shape": "none",
+        "slideshow_controls_style": "none",
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "section_9tf9Xz": {
       "type": "section",
       "blocks": {
@@ -189,7 +301,7 @@
             "text_Wpa94i": {
               "type": "text",
               "settings": {
-                "text": "<p>We are a small, family-run business based in the heart of Mid Norfolk, with extensive experience in the design and creation of gymnastics equipment and associated products.</p><p>Our workshop has recently undergone a major upgrade with the addition of advanced CNC cutting machines, 3D printers, and professional design software.</p><p>This investment supports our ongoing research and development, allowing us to design and refine innovative new products.</p>",
+                "text": "<p>GymKitz was founded by father-and-daughter duo <strong>Paul and Olivia</strong>, bringing together a lifetime of hands-on craftsmanship and first-hand gymnastics experience.</p><p>Olivia grew up as a competitive gymnast and now works as a gymnastics coach and club manager, while Paul spent years as the dedicated gymnastics parent, driving Olivia to training four times a week and supporting every step of her journey. Along the way, Paul began designing and building bespoke gymnastics equipment and training aids for Olivia, as well as for other family members involved in the sport.</p><p>Those years of experience revealed something important. As both a gymnast and now a coach, Olivia saw a clear gap in the market for high-quality, personalised training equipment and accessories that were both reliable and affordable. Training at home should feel just as purposeful as training in the gym, with equipment you can trust to help you develop your skills and confidence.</p><p>That shared vision became GymKitz.<br/></p><p>Today, we’re proud to be a family-run business designing and manufacturing premium training equipment and accessories right here in the UK. Every product is created with performance, practicality and durability in mind, giving athletes access to equipment that supports their goals without the premium price tag.<br/></p><p>Whether you’re a gymnast, calisthenics athlete, CrossFit enthusiast, dancer or cheerleader, our products are designed to help you gain that extra edge—the 1% improvements that make a real difference over time.</p><p>We also work closely with gymnastics clubs across the UK to create bespoke, club-branded equipment and accessories. From custom parallettes, floor bars and split trainers to personalised medal hangers and other club merchandise, we help clubs showcase their identity while providing high-quality products for their members. Whether you’re looking for branded equipment, competition gifts or fundraising opportunities, we’re here to bring your ideas to life.<br/></p><p>We believe quality training equipment should be accessible to everyone. That’s why we’re committed to creating innovative, personalised products that combine exceptional craftsmanship, thoughtful design and outstanding value, all in one place.<br/></p><p>From our family to yours, thank you for being part of the GymKitz journey.<br/></p><h5>GymKitz — Where Precision Meets Performance.</h5>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "center",
@@ -290,26 +402,7 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {
-            "button_7jkBnA": {
-              "type": "button",
-              "name": "t:names.button",
-              "settings": {
-                "label": "Contact Us",
-                "link": "shopify://pages/contact",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "button_7jkBnA"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
@@ -346,8 +439,8 @@
     }
   },
   "order": [
-    "hero_nKeYyr",
     "main",
+    "slideshow_kpyFzr",
     "section_9tf9Xz",
     "section_bEeRPr"
   ]
