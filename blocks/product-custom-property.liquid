@@ -20,11 +20,13 @@
   endif
 
   # Optionally limit the block to the selected variant being flagged for personalisation.
-  # Uses product.selected_variant (not selected_or_first_available_variant) so the block
-  # only shows once a variant is explicitly/fully selected - never defaults to "any" variant.
+  # Uses selected_or_first_available_variant (matching the rest of the theme, e.g.
+  # variant-main-picker.liquid) rather than product.selected_variant, since that's what the
+  # variant picker actually shows as checked on first load - selected_variant is nil unless
+  # a ?variant= param is present in the URL, which would wrongly hide this on page load.
   assign show_block = true
   if block_settings.show_if_personalisation
-    assign personalisation = closest.product.selected_variant.metafields.custom.personalisation.value
+    assign personalisation = closest.product.selected_or_first_available_variant.metafields.custom.personalisation.value
     unless personalisation == true or personalisation == 'true'
       assign show_block = false
     endunless
