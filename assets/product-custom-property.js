@@ -3,10 +3,14 @@ import { Component } from '@theme/component';
 import { ThemeEvents } from '@theme/events';
 import { morph } from '@theme/morph';
 
+// Shopify's hard limit for a file uploaded as a line item property.
+const MAX_FILE_SIZE_BYTES = 20 * 1024 * 1024;
+
 /**
  * @typedef {object} ProductCustomPropertyRefs
  * @property {HTMLInputElement | HTMLTextAreaElement} textInput - The text input.
  * @property {HTMLElement} characterCount - The character count element.
+ * @property {HTMLInputElement} fileInput - The file upload input.
  */
 
 /**
@@ -47,6 +51,24 @@ class ProductCustomProperty extends Component {
     const updatedText = template.replace('[current]', currentLength.toString()).replace('[max]', maxLength.toString());
 
     characterCount.textContent = updatedText;
+  }
+
+  /**
+   * Validates the selected file against Shopify's max upload size, catching an oversized
+   * file client-side rather than waiting for the add-to-cart request to be rejected.
+   * @param {Event & {target: HTMLInputElement}} event - The file input's change event.
+   */
+  handleFileChange(event) {
+    const input = event.target;
+    const file = input.files?.[0];
+
+    if (file && file.size > MAX_FILE_SIZE_BYTES) {
+      input.setCustomValidity(input.dataset.maxFileSizeError || 'File is too large.');
+    } else {
+      input.setCustomValidity('');
+    }
+
+    input.reportValidity();
   }
 
   /**

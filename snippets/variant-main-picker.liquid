@@ -51,6 +51,12 @@
             assign option_id_attribute = 'data-option-id="' | append: fieldset_id | append: '"'
             assign longest_value = 0
           endif
+
+          # Display 'Colour' instead of 'Color' without altering the underlying option name used for form submission
+          assign option_name_display = product_option.name
+          if option_name_display == 'Color'
+            assign option_name_display = 'Colour'
+          endif
         -%}
 
         {%- if variant_style == 'swatch' or block_settings.variant_style == 'buttons' -%}
@@ -62,7 +68,7 @@
             {{ option_id_attribute }}
           >
             <legend>
-              {{ product_option.name | escape -}}
+              {{ option_name_display | escape -}}
               {%- if variant_style == 'swatch' -%}
                 <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
               {%- endif %}
@@ -156,7 +162,7 @@
           %}
 
           <div class="variant-option variant-option--dropdowns">
-            <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{{ product_option.name | escape }}</label>
+            <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{{ option_name_display | escape }}</label>
             <div
               class="variant-option__select-wrapper"
               style="

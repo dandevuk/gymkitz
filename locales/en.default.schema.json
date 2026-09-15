@@ -1043,7 +1043,14 @@
       "show_if_personalisation": "Only show if selected variant has personalisation",
       "show_if_personalisation_info": "Hides this block unless the selected variant's custom.personalisation metafield is true.",
       "require_if_personalisation": "Require input when shown for personalisation",
-      "require_if_personalisation_info": "Buyers must fill in this field to add the item to cart whenever it's shown because the variant has personalisation."
+      "require_if_personalisation_info": "Buyers must fill in this field to add the item to cart whenever it's shown because the variant has personalisation.",
+      "show_if_image_upload": "Only show if selected variant requires an image upload",
+      "show_if_image_upload_info": "Hides this block unless the selected variant's custom.requires_image_upload metafield is true.",
+      "require_if_image_upload": "Require input when shown for image upload",
+      "require_if_image_upload_info": "Buyers must upload a file to add the item to cart whenever it's shown because the variant requires an image upload.",
+      "input_type_file": "File upload",
+      "file_accept": "Accepted file types",
+      "file_accept_info": "Comma-separated file types the browser will suggest, e.g. image/*, .pdf. Shopify still enforces its own 20MB file size limit and blocked file types on the server."
     },
     // Checkbox setting to enable quick add to cart from product cards
     "quick_add": "Quick add",

@@ -202,10 +202,29 @@
                       {%- for property in item.properties -%}
                         {%- assign property_first_char = property.first | slice: 0 -%}
                         {%- if property.last != blank and property_first_char != '_' -%}
+                          {%- assign property_file_url = property.last | split: '?' | first -%}
+                          {%- assign property_file_extension = property_file_url | split: '.' | last | downcase -%}
+                          {%- assign property_image_extensions = 'jpg,jpeg,png,gif,webp,avif,svg' | split: ',' -%}
                           <div class="cart-items__properties">
                             <dt>{{ property.first }}:</dt>
                             <dd>
-                              {%- if property.last contains '/uploads/' -%}
+                              {%- if property.last contains '/uploads/' and property_image_extensions contains property_file_extension -%}
+                                <a
+                                  href="{{ property.last }}"
+                                  class="cart-items__property-image-link"
+                                  target="_blank"
+                                  rel="noreferrer noopener"
+                                >
+                                  <img
+                                    src="{{ property.last }}"
+                                    alt="{{ property.first | escape }}"
+                                    width="48"
+                                    height="48"
+                                    loading="lazy"
+                                    class="cart-items__property-image"
+                                  >
+                                </a>
+                              {%- elsif property.last contains '/uploads/' -%}
                                 <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
                               {%- else -%}
                                 {{ property.last }}
@@ -798,5 +817,20 @@
   .cart-items__properties dt,
   .cart-items__properties dd {
     display: inline;
+  }
+
+  .cart-items__property-image-link {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 0;
+  }
+
+  .cart-items__property-image {
+    display: block;
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: var(--style-border-radius-inputs);
+    border: var(--style-border-width-inputs) solid var(--color-border);
   }
 {% endstylesheet %}

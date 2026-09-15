@@ -187,6 +187,31 @@
               },
               "blocks": {}
             },
+            "product_custom_property_QamGfi": {
+              "type": "product-custom-property",
+              "name": "t:names.product_custom_property",
+              "settings": {
+                "property_heading": "Customise your product",
+                "property_description": "",
+                "property_key": "Special instructions",
+                "show_if_personalisation": false,
+                "require_if_personalisation": true,
+                "show_if_image_upload": true,
+                "require_if_image_upload": true,
+                "input_type": "file",
+                "max_length": 100,
+                "checkbox_label": "Include gift wrapping",
+                "file_accept": "image/*",
+                "required": true,
+                "placeholder": "Enter your special instructions",
+                "placeholder_textarea": "Enter your special instructions",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "product_custom_property_jMjYkE": {
               "type": "product-custom-property",
               "name": "t:names.product_custom_property",
@@ -195,9 +220,13 @@
                 "property_description": "",
                 "property_key": "Name",
                 "show_if_personalisation": true,
+                "require_if_personalisation": true,
+                "show_if_image_upload": false,
+                "require_if_image_upload": true,
                 "input_type": "text",
                 "max_length": 25,
                 "checkbox_label": "Include gift wrapping",
+                "file_accept": "image/*",
                 "required": false,
                 "placeholder": "Enter your name",
                 "placeholder_textarea": "Add your name",
@@ -274,6 +303,7 @@
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "product_custom_property_QamGfi",
             "product_custom_property_jMjYkE",
             "buy_buttons_eYQEYi",
             "text_aEtTtq"

@@ -19,23 +19,51 @@
     assign actual_input_type = block_settings.input_type
   endif
 
-  # Optionally limit the block to the selected variant being flagged for personalisation.
+  # Optionally limit the block to the selected variant matching one or more metafield conditions.
   # Uses selected_or_first_available_variant (matching the rest of the theme, e.g.
   # variant-main-picker.liquid) rather than product.selected_variant, since that's what the
   # variant picker actually shows as checked on first load - selected_variant is nil unless
   # a ?variant= param is present in the URL, which would wrongly hide this on page load.
+  assign selected_variant = closest.product.selected_or_first_available_variant
+
+  assign has_personalisation = false
+  assign personalisation_value = selected_variant.metafields.custom.personalisation.value
+  if personalisation_value == true or personalisation_value == 'true'
+    assign has_personalisation = true
+  endif
+
+  assign has_image_upload = false
+  assign image_upload_value = selected_variant.metafields.custom.requires_image_upload.value
+  if image_upload_value == true or image_upload_value == 'true'
+    assign has_image_upload = true
+  endif
+
   assign show_block = true
+
   if block_settings.show_if_personalisation
-    assign personalisation = closest.product.selected_or_first_available_variant.metafields.custom.personalisation.value
-    unless personalisation == true or personalisation == 'true'
+    # This is the text-personalisation field - only show it when the variant needs text, and
+    # never alongside the image-upload field even if both metafields were set at the same time.
+    unless has_personalisation and has_image_upload == false
+      assign show_block = false
+    endunless
+  endif
+
+  if block_settings.show_if_image_upload
+    # This is the image-upload field - only show it when the variant needs an image, and
+    # never alongside the text-personalisation field even if both metafields were set at the same time.
+    unless has_image_upload and has_personalisation == false
       assign show_block = false
     endunless
   endif
 
   # The input is required whenever the merchant has turned on the general "required" setting,
-  # or when it's being shown because the variant has personalisation and that's set to require input.
+  # or when it's being shown because of one of the metafield conditions above and that
+  # condition's own "require" toggle is on.
   assign is_required = block_settings.required
   if block_settings.show_if_personalisation and block_settings.require_if_personalisation
+    assign is_required = true
+  endif
+  if block_settings.show_if_image_upload and block_settings.require_if_image_upload
     assign is_required = true
   endif
 -%}
@@ -115,6 +143,23 @@
           required: is_required,
           formId: product_form_id
         %}
+      {% elsif actual_input_type == 'file' %}
+        <div class="__file-wrapper">
+          <input
+            ref="fileInput"
+            on:change="/handleFileChange"
+            type="file"
+            id="{{ element_id }}"
+            name="{{ property_name }}"
+            class="field__input custom-property__input custom-property__file-input"
+            accept="{{ block_settings.file_accept | default: 'image/*' }}"
+            form="{{ product_form_id }}"
+            data-max-file-size-error="{{ 'content.product_custom_property_file_too_large' | t }}"
+            {% if is_required %}
+              required aria-required="true"
+            {% endif %}
+          >
+        </div>
       {% else %}
         <div class="__input-wrapper">
           <input
@@ -171,6 +216,16 @@
 
   product-custom-property-component .__input-wrapper {
     position: relative;
+  }
+
+  product-custom-property-component .__file-wrapper {
+    position: relative;
+  }
+
+  product-custom-property-component .custom-property__file-input::file-selector-button {
+    border: var(--style-border-width-inputs) solid var(--color-input-border);
+    border-radius: var(--style-border-radius-inputs);
+    margin-inline-end: var(--padding-sm);
   }
 
   product-custom-property-component input,
@@ -284,6 +339,21 @@
       "visible_if": "{{ block.settings.show_if_personalisation }}"
     },
     {
+      "type": "checkbox",
+      "id": "show_if_image_upload",
+      "label": "t:settings.product_custom_property.show_if_image_upload",
+      "info": "t:settings.product_custom_property.show_if_image_upload_info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "require_if_image_upload",
+      "label": "t:settings.product_custom_property.require_if_image_upload",
+      "info": "t:settings.product_custom_property.require_if_image_upload_info",
+      "default": true,
+      "visible_if": "{{ block.settings.show_if_image_upload }}"
+    },
+    {
       "type": "header",
       "content": "t:settings.product_custom_property.buyers_input"
     },
@@ -299,6 +369,10 @@
         {
           "value": "checkbox",
           "label": "t:settings.product_custom_property.input_type_checkbox"
+        },
+        {
+          "value": "file",
+          "label": "t:settings.product_custom_property.input_type_file"
         }
       ],
       "default": "text"
@@ -319,6 +393,14 @@
       "label": "t:settings.product_custom_property.checkbox_label",
       "default": "t:settings.product_custom_property.default_checkbox_label",
       "visible_if": "{{ block.settings.input_type == \"checkbox\" }}"
+    },
+    {
+      "type": "text",
+      "id": "file_accept",
+      "label": "t:settings.product_custom_property.file_accept",
+      "info": "t:settings.product_custom_property.file_accept_info",
+      "default": "image/*",
+      "visible_if": "{{ block.settings.input_type == \"file\" }}"
     },
     {
       "type": "checkbox",
