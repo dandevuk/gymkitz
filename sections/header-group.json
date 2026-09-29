@@ -14,10 +14,26 @@
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
+        "announcement_ffBJqe": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Shop our latest arrivals!",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "announcement_BxgCk9": {
           "type": "_announcement",
+          "disabled": true,
           "settings": {
-            "text": "Welcome to our store",
+            "text": "welcome",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
@@ -29,6 +45,7 @@
         }
       },
       "block_order": [
+        "announcement_ffBJqe",
         "announcement_BxgCk9"
       ],
       "disabled": true,
@@ -110,10 +127,41 @@
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
       }
+    },
+    "header_announcements_4mYqJK": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_Kk9zxV": {
+          "type": "_announcement",
+          "settings": {
+            "text": "&nbsp;<strong>Proudly Made in the UK</strong> · <strong>Designed by Gymnasts & Coaches</strong> · <strong>Family-Run Business</strong>&nbsp;",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_Kk9zxV"
+      ],
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "color_scheme": "scheme-5",
+        "divider_width": 0,
+        "padding-block-start": 15,
+        "padding-block-end": 15
+      }
     }
   },
   "order": [
     "header_announcements_9jGBFp",
-    "header_section"
+    "header_section",
+    "header_announcements_4mYqJK"
   ]
 }
