@@ -28,25 +28,10 @@
             "case": "none"
           },
           "blocks": {}
-        },
-        "announcement_BxgCk9": {
-          "type": "_announcement",
-          "disabled": true,
-          "settings": {
-            "text": "welcome",
-            "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "announcement_ffBJqe",
-        "announcement_BxgCk9"
+        "announcement_ffBJqe"
       ],
       "disabled": true,
       "name": "t:names.announcement_bar",
@@ -128,16 +113,16 @@
         "collection_color_scheme": "default"
       }
     },
-    "header_announcements_4mYqJK": {
+    "header_announcements_Yizder": {
       "type": "header-announcements",
       "blocks": {
-        "announcement_Kk9zxV": {
+        "announcement_kdEK3w": {
           "type": "_announcement",
           "settings": {
-            "text": "&nbsp;<strong>Proudly Made in the UK</strong> · <strong>Designed by Gymnasts & Coaches</strong> · <strong>Family-Run Business</strong>&nbsp;",
+            "text": "Designed by Gymnasts. Trusted by Coaches. Made in Britain.&nbsp;",
             "link": "",
             "font": "var(--font-body--family)",
-            "font_size": "1rem",
+            "font_size": "1.25rem",
             "weight": "",
             "letter_spacing": "normal",
             "case": "none"
@@ -146,13 +131,13 @@
         }
       },
       "block_order": [
-        "announcement_Kk9zxV"
+        "announcement_kdEK3w"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
         "speed": 5,
         "section_width": "page-width",
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-1",
         "divider_width": 0,
         "padding-block-start": 15,
         "padding-block-end": 15
@@ -162,6 +147,6 @@
   "order": [
     "header_announcements_9jGBFp",
     "header_section",
-    "header_announcements_4mYqJK"
+    "header_announcements_Yizder"
   ]
 }
