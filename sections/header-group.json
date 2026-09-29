@@ -125,7 +125,7 @@
             "font_size": "1.25rem",
             "weight": "",
             "letter_spacing": "normal",
-            "case": "none"
+            "case": "uppercase"
           },
           "blocks": {}
         },
@@ -150,7 +150,7 @@
       ],
       "name": "t:names.announcement_bar",
       "settings": {
-        "speed": 5,
+        "speed": 3,
         "section_width": "page-width",
         "color_scheme": "scheme-1",
         "divider_width": 0,
