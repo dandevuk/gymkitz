@@ -142,11 +142,26 @@
             "case": "uppercase"
           },
           "blocks": {}
+        },
+        "announcement_eWgE4L": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "Free delivery - Orders dispatched within 14 Days",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1.25rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "uppercase"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "announcement_kdEK3w",
-        "announcement_4faYHi"
+        "announcement_4faYHi",
+        "announcement_eWgE4L"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
