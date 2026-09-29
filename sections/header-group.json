@@ -41,7 +41,7 @@
         "color_scheme": "scheme-4",
         "divider_width": 1,
         "padding-block-start": 15,
-        "padding-block-end": 15
+        "padding-block-end": 20
       }
     },
     "header_section": {
@@ -128,10 +128,25 @@
             "case": "none"
           },
           "blocks": {}
+        },
+        "announcement_4faYHi": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "&nbsp;Family Run • British Made • Gymnast & Coach Designed&nbsp;",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1.25rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "announcement_kdEK3w"
+        "announcement_kdEK3w",
+        "announcement_4faYHi"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
@@ -139,8 +154,8 @@
         "section_width": "page-width",
         "color_scheme": "scheme-1",
         "divider_width": 0,
-        "padding-block-start": 15,
-        "padding-block-end": 15
+        "padding-block-start": 32,
+        "padding-block-end": 32
       }
     }
   },
