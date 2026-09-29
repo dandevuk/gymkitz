@@ -119,7 +119,7 @@
         "announcement_kdEK3w": {
           "type": "_announcement",
           "settings": {
-            "text": "Designed by Gymnasts. Trusted by Coaches. Made in Britain.&nbsp;",
+            "text": "Designed by Gymnasts. Trusted by Coaches. Made in the UK.&nbsp;",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "1.25rem",
@@ -139,7 +139,7 @@
             "font_size": "1.25rem",
             "weight": "",
             "letter_spacing": "normal",
-            "case": "none"
+            "case": "uppercase"
           },
           "blocks": {}
         }
